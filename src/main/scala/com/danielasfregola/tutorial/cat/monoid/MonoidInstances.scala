@@ -4,8 +4,13 @@ package com.danielasfregola.tutorial.cat.monoid
 
 object MonoidInstances {
 
-  implicit val intMonoid: Monoid[Int] = ???
+  implicit val intMonoid: Monoid[Int] = new Monoid[Int] {
+    def identity: Int = 0
+    def compose(x: Int, y: Int): Int = x + y
+  }
 
-  implicit val stringMonoid: Monoid[String] = ???
-
+  implicit val stringMonoid: Monoid[String] = new Monoid[String] {
+    def identity: String = ""
+    def compose(x: String, y: String): String = s"$x$y"
+  }
 }
