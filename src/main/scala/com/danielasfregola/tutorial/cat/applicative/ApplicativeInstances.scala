@@ -21,6 +21,7 @@ object ApplicativeInstances {
     // !!
     def ap[A, B](boxF: ZeroOrMore[(A) => B])(boxA: ZeroOrMore[A]): ZeroOrMore[B] = (boxF, boxA) match {
       case (OneOrMore(hF, _), OneOrMore(h, t)) => OneOrMore(hF(h), ap(boxF)(t))
+      case _ => Zero
     }
   }
 }
